@@ -1,0 +1,12 @@
+# Learning Encryption and Decryption
+# Encryption(암호화) : 데이터 보호를 위해 쓰임
+
+from cryptography.fernet import Fernet, MultiFernet # import 먼저 한다
+key1 = Fernet(Fernet.generate_key()) # Key를 만든다.
+key2 = Fernet(Fernet.generate_key())
+f = MultiFernet([key1, key2])
+token = f.encrypt(b"Secret message!") # encrypt 한다
+token
+b'...'
+f.decrypt(token)
+b'Secret message!'
